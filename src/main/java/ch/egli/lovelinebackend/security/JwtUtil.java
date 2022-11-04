@@ -6,7 +6,6 @@ import java.util.Map;
 import java.util.function.Function;
 
 import ch.egli.lovelinebackend.dto.LoginResponseDto;
-import io.github.cdimascio.dotenv.Dotenv;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
@@ -18,8 +17,8 @@ public class JwtUtil {
 
 	public static final long JWT_TOKEN_VALIDITY = 5 * 60 * 60;
 
-	Dotenv dotenv = Dotenv.load();
-	private String secret = dotenv.get("JWT_SECRET");
+	private String secret =
+			"fixmefixmefixmefixmefixmefixmefixmefixmefixmefixmefixmefixmefixmefixmefixmefixmefixmefixme";
 
 	//retrieve username from jwt token
 	public String getUsernameFromToken(String token) {
