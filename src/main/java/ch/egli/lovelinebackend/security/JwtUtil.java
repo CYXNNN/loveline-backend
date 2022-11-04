@@ -5,6 +5,8 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Function;
 
+import ch.egli.lovelinebackend.dto.LoginResponseDto;
+import io.github.cdimascio.dotenv.Dotenv;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
@@ -16,7 +18,8 @@ public class JwtUtil {
 
 	public static final long JWT_TOKEN_VALIDITY = 5 * 60 * 60;
 
-	private String secret = "fixme";
+	Dotenv dotenv = Dotenv.load();
+	private String secret = dotenv.get("JWT_SECRET");
 
 	//retrieve username from jwt token
 	public String getUsernameFromToken(String token) {
@@ -45,7 +48,7 @@ public class JwtUtil {
 	}
 
 	//generate token for user
-	public String generateToken(UserDetails userDetails) {
+	public LoginResponseDto generateToken(UserDetails userDetails) {
 		Map<String, Object> claims = new HashMap<>();
 		return doGenerateToken(claims, userDetails.getUsername());
 	}
@@ -55,11 +58,15 @@ public class JwtUtil {
 	//2. Sign the JWT using the HS512 algorithm and secret key.
 	//3. According to JWS Compact Serialization(https://tools.ietf.org/html/draft-ietf-jose-json-web-signature-41#section-3.1)
 	//   compaction of the JWT to a URL-safe string
-	private String doGenerateToken(Map<String, Object> claims, String subject) {
+	private LoginResponseDto doGenerateToken(Map<String, Object> claims, String subject) {
 
-		return Jwts.builder().setClaims(claims).setSubject(subject).setIssuedAt(new Date(System.currentTimeMillis()))
-				.setExpiration(new Date(System.currentTimeMillis() + JWT_TOKEN_VALIDITY * 1000))
-				.signWith(SignatureAlgorithm.HS512, secret).compact();
+		var expiration = new Date(System.currentTimeMillis() + JWT_TOKEN_VALIDITY * 1000);
+		var token =
+				Jwts.builder().setClaims(claims).setSubject(subject).setIssuedAt(new Date(System.currentTimeMillis()))
+						.setExpiration(expiration)
+						.signWith(SignatureAlgorithm.HS256, secret).compact();
+
+		return new LoginResponseDto(expiration, token);
 	}
 
 	//validate token

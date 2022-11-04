@@ -1,6 +1,7 @@
 package ch.egli.lovelinebackend.rest;
 
 import ch.egli.lovelinebackend.dto.LoginDto;
+import ch.egli.lovelinebackend.dto.LoginResponseDto;
 import ch.egli.lovelinebackend.security.JwtUtil;
 import ch.egli.lovelinebackend.service.JwtUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
 @CrossOrigin(origins = { "http://localhost:4200/", "http://192.168.0.142:4200" }, maxAge = 3600) // FIXME
+@RequestMapping("/api/v1/user")
 public class UserResource {
 	@Autowired
 	private AuthenticationManager authenticationManager;
@@ -29,7 +31,7 @@ public class UserResource {
 	private JwtUserDetailsService userDetailsService;
 
 	@RequestMapping(value = "/authenticate", method = RequestMethod.POST)
-	public ResponseEntity<String> createAuthenticationToken(@RequestBody LoginDto authenticationRequest)
+	public ResponseEntity<LoginResponseDto> createAuthenticationToken(@RequestBody LoginDto authenticationRequest)
 			throws Exception {
 
 		authenticate(authenticationRequest.username, authenticationRequest.password);
@@ -37,9 +39,7 @@ public class UserResource {
 		final UserDetails userDetails = userDetailsService
 				.loadUserByUsername(authenticationRequest.username);
 
-		final String token = jwtTokenUtil.generateToken(userDetails);
-
-		return ResponseEntity.ok(token);
+		return ResponseEntity.ok(jwtTokenUtil.generateToken(userDetails));
 	}
 
 	private void authenticate(String username, String password) throws Exception {
