@@ -38,7 +38,8 @@ public class EventService {
 	public List<FileElement> upload(MultipartFile[] files, String eventId) {
 		var event = repo.findById(eventId).orElseThrow(NullPointerException::new);
 
-		return Arrays.stream(files).map(file -> {
+		var fileElements = Arrays.stream(files).map(file -> {
+
 			var fileEntity = fileToEntity(file, eventId);
 
 			fileEntity.setEvent(event);
@@ -55,6 +56,11 @@ public class EventService {
 			return fileEntity;
 		}).collect(Collectors.toList());
 
+		var first = event.getElements().get(0);
+		var thumb = fileService.saveThumbnail(first.getPath() + "/" + first.getFilename());
+		event.setThumbnailPath(thumb);
+
+		return fileElements;
 	}
 
 	private FileElement fileToEntity(MultipartFile file, String eventId) {

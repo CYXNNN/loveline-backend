@@ -22,7 +22,7 @@ import lombok.Setter;
 @Entity
 @NoArgsConstructor
 @Table
-public class Event extends Persistent{
+public class Event extends Persistent {
 
 	@Column
 	private String title;
@@ -37,7 +37,10 @@ public class Event extends Persistent{
 	@Enumerated(EnumType.STRING)
 	private EventType type;
 
-	@OneToMany(mappedBy="event")
+	@Column
+	private String thumbnailPath;
+
+	@OneToMany(mappedBy = "event")
 	List<FileElement> elements;
 
 	@JsonIgnore

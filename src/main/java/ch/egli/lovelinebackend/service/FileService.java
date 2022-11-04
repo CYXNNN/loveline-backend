@@ -8,6 +8,8 @@ import java.util.Objects;
 
 import ch.egli.lovelinebackend.Config;
 import ch.egli.lovelinebackend.repo.FileElementRepo;
+import net.coobird.thumbnailator.Thumbnails;
+import net.coobird.thumbnailator.name.Rename;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.UrlResource;
@@ -61,6 +63,26 @@ public class FileService {
 
 	public void update(MultipartFile file, String path) {
 		// TODO
+	}
+
+	public String saveThumbnail(String path) {
+
+		var newPath = "thumbnail." + path;
+
+		var filepath = toFilepath(path);
+
+		try {
+			var file = filepath.toFile();
+			Thumbnails.of(file)
+					.size(200, 200)
+					.outputFormat("jpg")
+					.toFiles(Rename.PREFIX_DOT_THUMBNAIL);
+
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+		return newPath;
 	}
 
 	private Path toFilepath(String path) {
