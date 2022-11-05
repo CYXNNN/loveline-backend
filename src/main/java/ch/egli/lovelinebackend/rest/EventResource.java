@@ -23,7 +23,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 @Controller
-@CrossOrigin(origins = { "http://localhost:4200/", "http://192.168.0.142:4200" }, maxAge = 3600) // FIXME
+@CrossOrigin(origins = { "*" }, maxAge = 3600) // FIXME
 @RequestMapping("/api/v1/event")
 public class EventResource {
 
