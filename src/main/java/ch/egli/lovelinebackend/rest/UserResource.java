@@ -26,7 +26,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
-@CrossOrigin(origins = { "https://cyxn.vodka", "http://localhost:4200" }, maxAge = 3600) // FIXME
+@CrossOrigin(origins = { "*" }) // FIXME
 @RequestMapping("/api/v1/user")
 public class UserResource {
 	@Autowired
