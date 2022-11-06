@@ -50,7 +50,8 @@ public class LovedPrincipal implements UserDetails {
 
 	@Override
 	public boolean isEnabled() {
-		return Boolean.TRUE.equals(user.getEnabled());
+		//return Boolean.TRUE.equals(user.getEnabled()); //FIXME
+		return true;
 	}
 
 	public String getId() {
