@@ -86,7 +86,7 @@ public class FileService {
 	}
 
 	private Path toFilepath(String path) {
-		return Path.of(base + "\\" + path);
+		return Path.of(base + "/" + path);
 	}
 
 	private void init() {
