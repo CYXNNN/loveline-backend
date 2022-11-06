@@ -65,7 +65,7 @@ public class JwtUtil {
 						.setExpiration(expiration)
 						.signWith(SignatureAlgorithm.HS256, secret).compact();
 
-		return new LoginResponseDto(expiration, token, subject);
+		return new LoginResponseDto(expiration, token);
 	}
 
 	//validate token

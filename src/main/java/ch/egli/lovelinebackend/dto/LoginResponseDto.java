@@ -2,16 +2,17 @@ package ch.egli.lovelinebackend.dto;
 
 import java.util.Date;
 
+import ch.egli.lovelinebackend.model.User;
+
 public class LoginResponseDto {
 
 	public Date expiresAt;
 	public String token;
-	public String name;
+	public String refreshToken;
+	public User user;
 
-	public LoginResponseDto(Date expiresAt, String token, String name) {
+	public LoginResponseDto(Date expiresAt, String token) {
 		this.expiresAt = expiresAt;
 		this.token = token;
-		this.name = name;
 	}
-
 }
