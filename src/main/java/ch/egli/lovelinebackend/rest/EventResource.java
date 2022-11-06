@@ -23,7 +23,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 @Controller
-@CrossOrigin(origins = { "*" }, maxAge = 3600) // FIXME
+@CrossOrigin
 @RequestMapping("/api/v1/event")
 public class EventResource {
 
