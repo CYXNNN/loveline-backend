@@ -64,4 +64,11 @@ public class EventResource {
 	public HttpEntity<List<Event>> get() {
 		return new HttpEntity<>(service.get());
 	}
+
+	@RequestMapping(path = "/random",
+			method = RequestMethod.GET,
+			produces = "application/json")
+	public HttpEntity<List<Event>> getRandom() {
+		return new HttpEntity<>(List.of(service.getRandom()));
+	}
 }

@@ -35,6 +35,10 @@ public class EventService {
 		return repo.findAllByOrderByDateDesc();
 	}
 
+	public Event getRandom() {
+		return repo.getRandom();
+	}
+
 	public List<FileElement> upload(MultipartFile[] files, String eventId) {
 		var event = repo.findById(eventId).orElseThrow(NullPointerException::new);
 

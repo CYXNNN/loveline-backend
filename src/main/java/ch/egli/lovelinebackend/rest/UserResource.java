@@ -8,10 +8,12 @@ import ch.egli.lovelinebackend.dto.TokenRefreshRequest;
 import ch.egli.lovelinebackend.dto.TokenRefreshResponse;
 import ch.egli.lovelinebackend.exception.TokenRefreshException;
 import ch.egli.lovelinebackend.model.RefreshToken;
+import ch.egli.lovelinebackend.model.User;
 import ch.egli.lovelinebackend.security.JwtUtil;
 import ch.egli.lovelinebackend.security.LovedPrincipal;
 import ch.egli.lovelinebackend.service.JwtUserDetailsService;
 import ch.egli.lovelinebackend.service.RefreshTokenService;
+import ch.egli.lovelinebackend.util.SecurityUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.ResponseEntity;
@@ -40,6 +42,15 @@ public class UserResource {
 
 	@Autowired
 	private JwtUserDetailsService userDetailsService;
+
+	@RequestMapping(path = "",
+			method = RequestMethod.GET,
+			consumes = "application/json",
+			produces = "application/json")
+	public HttpEntity<User> get() {
+		var principal = SecurityUtil.getCurrentUser();
+		return new HttpEntity<>(principal.getUser());
+	}
 
 	@RequestMapping(path = "/authenticate",
 			method = RequestMethod.POST,
