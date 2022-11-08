@@ -12,6 +12,7 @@ import org.springframework.http.HttpEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -23,6 +24,11 @@ public class CalendarResource {
 
 	@Autowired
 	private CalendarService service;
+
+	@GetMapping("/future/{limit}")
+	public HttpEntity<List<Appointment>> getFuture(@PathVariable("limit") Integer limit) {
+		return new HttpEntity<>(service.getFuture(limit));
+	}
 
 	@GetMapping
 	public HttpEntity<List<Appointment>> get() {
