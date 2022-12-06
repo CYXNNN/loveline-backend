@@ -1,7 +1,5 @@
 package ch.egli.lovelinebackend.rest;
 
-import javax.validation.Valid;
-
 import ch.egli.lovelinebackend.dto.LoginDto;
 import ch.egli.lovelinebackend.dto.LoginResponseDto;
 import ch.egli.lovelinebackend.dto.TokenRefreshRequest;
@@ -26,6 +24,8 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
+import jakarta.validation.Valid;
 
 @Controller
 @CrossOrigin

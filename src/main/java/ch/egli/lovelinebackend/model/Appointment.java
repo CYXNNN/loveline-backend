@@ -1,14 +1,14 @@
 package ch.egli.lovelinebackend.model;
 
-import java.util.Date;
-
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-
 import lombok.Getter;
 import lombok.Setter;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+
+import java.util.Date;
 
 @Getter
 @Setter

@@ -1,26 +1,19 @@
 package ch.egli.lovelinebackend.rest;
 
-import java.util.List;
-
-import javax.validation.Valid;
-
 import ch.egli.lovelinebackend.dto.EventCreationDto;
 import ch.egli.lovelinebackend.model.Event;
 import ch.egli.lovelinebackend.model.FileElement;
 import ch.egli.lovelinebackend.service.EventService;
 import ch.egli.lovelinebackend.service.FileService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
 import org.springframework.http.HttpEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+
+import java.util.List;
 
 @Controller
 @CrossOrigin
@@ -68,7 +61,8 @@ public class EventResource {
 	@RequestMapping(path = "/random",
 			method = RequestMethod.GET,
 			produces = "application/json")
-	public HttpEntity<List<Event>> getRandom() {
-		return new HttpEntity<>(List.of(service.getRandom()));
+	public HttpEntity<Event> getRandom() {
+
+		return new HttpEntity<>(service.getRandom());
 	}
 }

@@ -1,17 +1,16 @@
 package ch.egli.lovelinebackend.service;
 
-import java.time.Instant;
-import java.util.Optional;
-import java.util.UUID;
-
-import javax.transaction.Transactional;
-
 import ch.egli.lovelinebackend.exception.TokenRefreshException;
 import ch.egli.lovelinebackend.model.RefreshToken;
 import ch.egli.lovelinebackend.repo.RefreshTokenRepo;
 import ch.egli.lovelinebackend.repo.UserRepo;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.time.Instant;
+import java.util.Optional;
+import java.util.UUID;
 
 @Service
 public class RefreshTokenService {

@@ -1,6 +1,6 @@
 package ch.egli.lovelinebackend.dto;
 
-import javax.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotBlank;
 
 public class TokenRefreshRequest {
 	@NotBlank

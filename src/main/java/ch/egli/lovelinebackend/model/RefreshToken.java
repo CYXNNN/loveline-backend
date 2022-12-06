@@ -1,14 +1,14 @@
 package ch.egli.lovelinebackend.model;
 
-import java.time.Instant;
-
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
-
 import lombok.Getter;
 import lombok.Setter;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToOne;
+
+import java.time.Instant;
 
 @Getter
 @Setter
